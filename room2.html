@@ -92,14 +92,11 @@
             color: #d9534f;
         }
 
-        /* Стиль для секции оплаты */
         .promo-container {
-            margin: 20px 0;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            margin: 10px 270px;
+            display: block;
             text-align: center;
+            width: 700px;
         }
 
         input[type="text"] {
@@ -143,35 +140,9 @@
         }
     </style>
 
-    <!-- Подключаем PayPal SDK с указанием гривны (UAH) в качестве валюты -->
-    <script src="https://www.paypal.com/sdk/js?client-id=AZx0ghFXqFdXL2GTPYcEDYSKi9l7_Zo6KRgD_oqFIg7_ztoGvpgs7f7OA6pfcFXC9RinGty8xvRnDikB&currency=UAH"></script>
+    <!-- Подключаем PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AZx0ghFXqFdXL2GTPYcEDYSKi9l7_Zo6KRgD_oqFIg7_ztoGvpgs7f7OA6pfcFXC9RinGty8xvRnDikB"></script>
 
-    <script>
-        function processPayment() {
-            // Создание заказа при нажатии кнопки "Оплатить"
-            paypal.Buttons({
-                createOrder: function (data, actions) {
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: {
-                                value: '10.00' // Сумма в гривнах
-                            }
-                        }]
-                    });
-                },
-                onApprove: function (data, actions) {
-                    return actions.order.capture().then(function (details) {
-                        alert('Оплата успешно завершена! Спасибо, ' + details.payer.name.given_name);
-                        // Здесь можно добавить логику для подтверждения бронирования
-                    });
-                },
-                onError: function (err) {
-                    console.error(err);
-                    alert('Произошла ошибка при оплате. Попробуйте снова.');
-                }
-            }).render('.promo-container'); // Запуск оплаты через PayPal
-        }
-    </script>
 </head>
 
 <body>
@@ -193,12 +164,11 @@
             </p>
         </div>
 
-        <!-- Обновлённая секция оплаты -->
         <div class="promo-container">
             <h2>Забронировать</h2>
             <input type="text" placeholder="Введите промокод (необязательно)" id="promoCode" />
-            <button class="button" onclick="processPayment()">Оплатить</button>
-            <p style="margin-top: 15px;">Цена: <strong>20 гривен</strong></p>
+            <h3>Сумма к оплате: <span id="amount-display">10 Рублей</span></h3> <!-- Отображаем сумма в рублях -->
+            <button class="button" onclick="processPayment()">Оплатить</button> <!-- кнопка с вызовом оплаты -->
         </div>
 
         <div class="link-container">
@@ -212,6 +182,38 @@
             <p>&copy; 2024 LuxCinema. Все права защищены.</p>
         </div>
     </div>
+
+    <!-- Скрипт для оплаты -->
+    <script>
+        const conversionRate = 100; // Примерный курс (1 доллар = 100 рублей)
+        const amountInRUB = 10; // Сумма в рублях
+        const amountInUSD = (amountInRUB / conversionRate).toFixed(2); // Конвертированная сумма
+
+        function processPayment() {
+            // Создание заказа при нажатии кнопки "Оплатить"
+            paypal.Buttons({
+                createOrder: function (data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: amountInUSD // Используем сумму в долларах
+                            }
+                        }]
+                    });
+                },
+                onApprove: function (data, actions) {
+                    return actions.order.capture().then(function (details) {
+                        alert('Оплата успешно завершена! Спасибо, ' + details.payer.name.given_name);
+                        // Здесь можно добавить логику для подтверждения бронирования
+                    });
+                },
+                onError: function (err) {
+                    console.error(err);
+                    alert('Произошла ошибка при оплате. Попробуйте снова.');
+                }
+            }).render('body'); // Запуск оплаты через PayPal
+        }
+    </script>
 </body>
 
 </html>
