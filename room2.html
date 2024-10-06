@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Стандартная Комната - LuxCinema</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom right, #0a0e17, #112240);
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .room-container img {
+            width: 250px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .room-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s, background 0.3s;
+            text-align: left;
+            position: relative;
+            width: auto;
+            display: block;
+            height: auto;
+        }
+
+        .room-container:hover {
+            transform: scale(1.02);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .room-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin: 20px 0 10px;
+            border-bottom: 2px solid #d9534f;
+            display: block;
+            text-align: center;
+            padding-bottom: 5px;
+        }
+
+        .room-container p {
+            font-size: 1.2em;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .link-container {
+            text-align: center;
+            margin: 10px 0;
+            padding: 15px;
+            display: block;
+        }
+
+        .link {
+            color: #5bc0de;
+            text-decoration: none;
+            font-size: 1.5em;
+            transition: color 0.3s;
+        }
+
+        .link:hover {
+            color: #d9534f;
+        }
+
+        /* Стиль для секции оплаты */
+        .promo-container {
+            margin: 20px 0;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 40px);
+            padding: 10px;
+            border: 2px solid #5bc0de;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+            margin-top: 10px;
+        }
+
+        input[type="text"]:focus {
+            border-color: #d9534f;
+            outline: none;
+        }
+
+        .button {
+            background-color: #d9534f;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 15px 20px;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .button:hover {
+            background-color: #c9302c;
+            transform: scale(1.05);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #777;
+            font-size: 0.9em;
+        }
+    </style>
+
+    <!-- Подключаем PayPal SDK с указанием гривны (UAH) в качестве валюты -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AZx0ghFXqFdXL2GTPYcEDYSKi9l7_Zo6KRgD_oqFIg7_ztoGvpgs7f7OA6pfcFXC9RinGty8xvRnDikB&currency=UAH"></script>
+
+    <script>
+        function processPayment() {
+            // Создание заказа при нажатии кнопки "Оплатить"
+            paypal.Buttons({
+                createOrder: function (data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: '10.00' // Сумма в гривнах
+                            }
+                        }]
+                    });
+                },
+                onApprove: function (data, actions) {
+                    return actions.order.capture().then(function (details) {
+                        alert('Оплата успешно завершена! Спасибо, ' + details.payer.name.given_name);
+                        // Здесь можно добавить логику для подтверждения бронирования
+                    });
+                },
+                onError: function (err) {
+                    console.error(err);
+                    alert('Произошла ошибка при оплате. Попробуйте снова.');
+                }
+            }).render('.promo-container'); // Запуск оплаты через PayPal
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Добро пожаловать в Стандартную Комнату! 🎬</h1>
+
+        <div class="room-container">
+            <h2>Стандартная Комната</h2>
+            <img src="png/2.jpg" alt="Стандартная Комната"> <!-- Путь к изображению -->
+            <p>
+                ▪ 👥 Для двоих<br>
+                ▪ 🖥 Стандартный экран 75"<br>
+                ▪ 🍿 Простые кресла с мягкой обивкой<br>
+                ▪ 📅 Доступ к выбору фильмов<br>
+            </p>
+            <p>
+                Уютная атмосфера, идеальная для романтического вечера. Здесь вы сможете насладиться любимыми фильмами
+                без лишних затрат.
+            </p>
+        </div>
+
+        <!-- Обновлённая секция оплаты -->
+        <div class="promo-container">
+            <h2>Забронировать</h2>
+            <input type="text" placeholder="Введите промокод (необязательно)" id="promoCode" />
+            <button class="button" onclick="processPayment()">Оплатить</button>
+            <p style="margin-top: 15px;">Цена: <strong>20 гривен</strong></p>
+        </div>
+
+        <div class="link-container">
+            <p>Поделитесь с вашей второй половинкой, чтобы запуститься в одной комнате. После оплаты ей станет доступна
+                ссылка:</p>
+            <a href="https://www.standard-cinema-luxury.com/" class="link"
+                id="link">https://www.standard-cinema-luxury.com/</a>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2024 LuxCinema. Все права защищены.</p>
+        </div>
+    </div>
+</body>
+
+</html>

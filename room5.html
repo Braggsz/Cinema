@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP Комната - LuxCinema</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom right, #0a0e17, #112240);
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px; /* Увеличена ширина контейнера */
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+
+        .room-container img {
+            width: 250px;
+            text-align: center;
+        }
+
+
+.room-container h2 {
+    text-align: center;
+
+}
+
+
+        .room-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 40px; /* Увеличено внутреннее отступление */
+            margin-bottom: 30px; /* Увеличен отступ между контейнерами */
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s, background 0.3s;
+            text-align: left;
+            position: relative;
+            width: auto;
+            display: block;
+            height: auto;            
+        }
+
+        .room-container:hover {
+            transform: scale(1.02);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .room-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin: 20px 0 10px;
+            border-bottom: 2px solid #d9534f;
+            display: block;
+            padding-bottom: 5px;
+            
+        }
+
+        .room-container p {
+            font-size: 1.2em;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .link-container {
+            text-align: center;
+            margin: 10px 0;
+            padding: 15px;
+            display: block;
+        }
+
+        .link {
+            color: #5bc0de;
+            text-decoration: none;
+            font-size: 1.5em;
+            transition: color 0.3s;
+        }
+
+        .link:hover {
+            color: #d9534f;
+        }
+
+        .promo-container {
+            margin: 10px 270px;
+            display: block;
+            text-align: center;
+            width: 700px;
+
+        }
+
+        input[type="text"] {
+            width: calc(100% - 40px);
+            padding: 10px;
+            border: 2px solid #5bc0de;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+            margin-top: 10px;
+        }
+
+        input[type="text"]:focus {
+            border-color: #d9534f;
+            outline: none;
+        }
+
+        .button {
+            background-color: #d9534f;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 15px 20px;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .button:hover {
+            background-color: #c9302c;
+            transform: scale(1.05);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #777;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Добро пожаловать в VIP Комнату! 🎬</h1>
+        
+        <div class="room-container">
+            <h2>VIP Комната</h2>
+            <img src="png/5.jpg" alt="VIP Комната"> <!-- Путь к изображению -->
+            <p>
+                ▪ 👥 Для двоих<br>
+                ▪ 🖥 4K и 3D с эксклюзивным 120" экраном<br>
+                ▪ 🍿 Удобные кожаные кресла<br>
+                ▪ 🎤 Микрофон для караоке<br>
+                ▪ 💏 Уютная обстановка для уединения<br>
+            </p>
+            <p>
+                Эксклюзивная VIP-комната для истинных ценителей кино! Наслаждайтесь просмотром фильмов в комфорте и стиле.
+            </p>
+        </div>
+
+        <div class="promo-container">
+            <h2>Забронировать</h2>
+            <input type="text" placeholder="Введите промокод (необязательно)" id="promoCode" />
+            <button class="button" onclick="alert('Промокод: ' + document.getElementById('promoCode').value)">Оплатить</button>
+        </div>
+
+        <div class="link-container">
+            <p>Поделитесь с вашей второй половинкой, чтобы запуститься в одной комнате. После оплаты ей станет доступна ссылка:</p>
+            <a href="https://www.vip-cinema-luxury.com/" class="link" id="link">https://www.vip-cinema-luxury.com/</a>
+        </div>
+
+
+
+        <div class="footer">
+            <p>&copy; 2024 LuxCinema. Все права защищены.</p>
+        </div>
+    </div>
+</body>
+</html>
