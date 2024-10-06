@@ -1,0 +1,366 @@
+/* Общие настройки */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #121212, #2b2b2b);
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* Навигация */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+  animation: navbar-slide 1s ease-in-out;
+}
+
+.nav-links {
+  list-style: none;
+}
+
+.nav-links li {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #ff9800;
+}
+
+@keyframes navbar-slide {
+  from {
+    top: -100px;
+  }
+  to {
+    top: 0;
+  }
+}
+
+/* Главный раздел */
+.rooms {
+  padding-top: 120px;
+  text-align: center;
+  animation: fadeIn 1s ease;
+}
+
+.rooms h2 {
+  font-size: 36px;
+  margin-bottom: 40px;
+  color: #ff9800;
+}
+
+.room-container {
+  display: inline-block;
+  width: 300px;
+  margin: 20px;
+  background: linear-gradient(145deg, #1a1a1a, #333333);
+  border-radius: 10px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.room-container:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 25px rgba(255, 152, 0, 0.5);
+}
+
+.room-image {
+  width: 100%;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.room-container:hover .room-image {
+  transform: scale(1.1);
+}
+
+.room-container h3 {
+  font-size: 24px;
+  margin: 15px 0;
+  color: #ff9800;
+}
+
+.description {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 15px;
+}
+
+.description li {
+  margin-bottom: 10px;
+}
+
+.details {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.price {
+  font-size: 18px;
+  color: #ff9800;
+  margin-bottom: 20px;
+}
+
+/* Кнопка "Забронировать" */
+.book-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ff9800;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  text-decoration: none; /* Убирает подчеркивание */
+}
+
+.book-button:hover {
+  background-color: #ff6d00;
+  box-shadow: 0 8px 15px rgba(255, 152, 0, 0.5);
+  transform: translateY(-2px); /* Поднимает кнопку немного вверх при наведении */
+}
+
+.book-button:active {
+  transform: scale(0.95); /* Уменьшает кнопку при нажатии */
+}
+
+/* Анимация плавного появления */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Футер */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  margin-top: 50px;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+}
+
+
+
+
+.social-media {
+  display: flex;
+  justify-content: center; /* Центрируем иконки */
+  margin-top: 40px; /* Отступ сверху */
+}
+
+.social-media a {
+  margin: 0 15px; /* Отступы между иконками */
+  text-decoration: none; /* Убираем подчеркивание */
+}
+
+.social-icon {
+  font-size: 60px; /* Увеличиваем размер иконок */
+  color: #ecf0f1; /* Светлый цвет иконок */
+  transition: transform 0.3s ease, color 0.3s ease; /* Плавные эффекты */
+}
+
+.social-icon:hover {
+  transform: scale(1.1); /* Увеличение при наведении */
+  color: #ffcc00; /* Яркий цвет при наведении */
+}
+
+/* Для мобильных устройств */
+@media screen and (max-width: 767px) {
+  .social-icon {
+      font-size: 50px; /* Уменьшаем размер на мобильных устройствах */
+  }
+}
+
+/* Для планшетов */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .social-icon {
+      font-size: 55px; /* Размер для планшетов */
+  }
+}
+
+/* Для больших экранов (ноутбуки и десктопы) */
+@media screen and (min-width: 1024px) {
+  .social-icon {
+      font-size: 60px; /* Размер для больших экранов */
+  }
+}
+
+
+
+
+
+
+/* Для мобильных устройств */
+@media screen and (max-width: 767px) {
+  .main-title {
+      font-size: 2.5em;
+  }
+
+  .description, .help-text {
+      font-size: 1em;
+  }
+
+  a.button, a.button.secondary {
+      padding: 10px 20px;
+      font-size: 1em;
+  }
+
+  h2 {
+      font-size: 1.8em;
+  }
+
+  .section {
+      padding: 20px;
+  }
+}
+
+
+
+/* Для мобильных телефонов */
+@media screen and (max-width: 767px) {
+  .container {
+    padding: 20px 10px;
+    max-width: 100%;
+  }
+
+  .main-title {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+}
+
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+
+
+/* Для планшетов */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .container {
+    padding: 40px 15px;
+    max-width: 90%;
+  }
+
+  .main-title {
+    font-size: 2.5em;
+  }
+
+  h2 {
+    font-size: 2em;
+  }
+}
+
+
+
+
+
+/* Для больших экранов (ноутбуки и десктопы) */
+@media screen and (min-width: 1024px) {
+  .container {
+    padding: 50px 20px;
+    max-width: 1000px;
+  }
+
+  .main-title {
+    font-size: 3.5em;
+  }
+
+  h2 {
+    font-size: 2.5em;
+  }
+}
+
+
+
+
+/* Анимация появления контента */
+@keyframes fadeIn {
+  from {
+      opacity: 0; /* Прозрачность 0 */
+      transform: translateY(50px); /* Сдвиг вниз */
+  }
+  to {
+      opacity: 1; /* Прозрачность 1 */
+      transform: translateY(0); /* Сдвиг на место */
+  }
+}
+
+
+
+
+
+/* Стили для анимации загрузки */
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  height: 100px;
+}
+
+.loader-circle {
+  width: 20px;
+  height: 20px;
+  margin: 0 10px;
+  background-color: #ffcc00; /* Яркий желтый цвет для загрузки */
+  border-radius: 50%;
+  animation: bounce 0.6s infinite alternate;
+}
+
+.loader-circle:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.loader-circle:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loader-circle:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes bounce {
+  0% {
+      transform: translateY(0);
+  }
+  100% {
+      transform: translateY(-30px);
+  }
+}
