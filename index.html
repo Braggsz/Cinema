@@ -4,138 +4,313 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кинотеатр - Комнаты</title>
-    <link rel="stylesheet" href="static/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <script src="script.js" defer></script> <!-- Подключаем JS файл -->
+    <title>LuxCinema</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(to bottom right, #1c1c1c, #3e3e3e);
+            font-family: 'Poppins', sans-serif;
+            color: #ffffff;
+            position: relative;
+        }
+
+        /* Элементы загрузки */
+        .loader-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            opacity: 1;
+            transition: opacity 1s ease;
+        }
+
+        .loader {
+            width: 80px;
+            height: 80px;
+            border: 8px solid rgba(255, 255, 255, 0.3);
+            border-top: 8px solid #ff4081; /* Цветовая схема */
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Анимация появления приветственного текста */
+        .welcome-container {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(-50px);
+            animation: fadeIn 1s forwards;
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome-text {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 4px solid #ff4081;
+            animation: typing 4s steps(30, end), blink-caret 0.75s step-end infinite;
+            text-shadow: 0 0 20px rgba(255, 64, 129, 0.5);
+            color: #ff4081; /* Цвет текста */
+            position: relative; /* Для лучей */
+        }
+
+        /* Эффект лучей */
+        .rays {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px; /* Длина лучей */
+            height: 300px; /* Высота лучей */
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+            animation: raysAnimation 4s infinite;
+            transform: translate(-50%, -50%);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        @keyframes raysAnimation {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0.5;
+            }
+        }
+
+        /* Кнопка */
+        .button {
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            background-color: #ff4081;
+            border: none;
+            border-radius: 30px; /* Уменьшены закругленные углы */
+            cursor: pointer;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInButton 1.5s forwards;
+            font-weight: 600; /* Более жирный шрифт */
+            letter-spacing: 1px; /* Расстояние между буквами */
+            position: relative; /* Для добавления эффектов */
+            overflow: hidden; /* Обрезка внутреннего содержимого */
+        }
+
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 300%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translateX(-50%) scale(0);
+            transition: transform 0.5s;
+            z-index: 0;
+        }
+
+        .button:hover::before {
+            transform: translateX(-50%) scale(1); /* Эффект при наведении */
+        }
+
+        .button:hover {
+            background-color: #e91e63; /* Цвет при наведении */
+            transform: translateY(10px) scale(1.05); /* Увеличение при наведении */
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Анимация кнопки */
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink-caret {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        @keyframes fadeInButton {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Эффекты частиц */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0; /* За всеми элементами */
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleAnimation 5s infinite;
+        }
+
+        @keyframes particleAnimation {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+
+        /* Параметры частиц */
+        .particle-1 {
+            animation-duration: 4s;
+        }
+
+        .particle-2 {
+            animation-duration: 5s;
+        }
+
+        .particle-3 {
+            animation-duration: 6s;
+        }
+
+        .particle-4 {
+            animation-duration: 3s;
+        }
+
+        .particle-5 {
+            animation-duration: 7s;
+        }
+
+        /* Мобильный адаптивный дизайн */
+        @media (max-width: 768px) {
+            .welcome-text {
+                font-size: 2.5rem; /* Меньший шрифт для мобильных */
+            }
+
+            .button {
+                padding: 10px 30px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
-
-    <div class="loader">
-        <div class="loader-circle"></div>
-        <div class="loader-circle"></div>
-        <div class="loader-circle"></div>
+    <div class="loader-screen" id="loaderScreen">
+        <div class="loader"></div>
     </div>
 
-    <header>
-        <nav class="navbar">
-            <div class="logo">
-                <h1>Кинотеатр</h1>
-            </div>
-            <ul class="nav-links">
-                <li><a href="film.html">Комнаты</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div class="welcome-container" id="welcomeContainer">
+        <div class="rays"></div> <!-- Эффект лучей -->
+        <div class="welcome-text" id="welcomeText">Добро пожаловать в LuxCinema</div>
+        <button class="button" id="bookingButton" style="display:none;">Перейти к бронированию комнат</button>
+    </div>
 
-    <main>
-        <section class="rooms">
-            <h2>Наши Комнаты</h2>
-
-            <div class="room-container">
-                <img src="png/1.jpg" alt="Эконом Комната" class="room-image">
-                <h3>Эконом Комната</h3>
-                <ul class="description">
-                    <li>▪ 👥 Для двоих</li>
-                    <li>▪ 🖥 Стандартный экран 55"</li>
-                    <li>▪ 🍿 Простые кресла с мягкой обивкой</li>
-                    <li>▪ 📅 Доступ к выбору фильмов</li>
-                </ul>
-                <p class="details">
-                    Уютная атмосфера, идеальная для романтического вечера. Здесь вы сможете насладиться любимыми
-                    фильмами без лишних затрат.
-                </p>
-                <p class="price">Цена: <strong>2000 рублей</strong></p>
-                <button><a target="_blank" href="room1.html" class="book-button">Забронировать</a></button>
-            </div>
-
-            <div class="room-container">
-                <img src="png/2.jpg" alt="Стандарт Комната" class="room-image">
-                <h3>Стандарт Комната</h3>
-                <ul class="description">
-                    <li>▪ 👥 Для двоих</li>
-                    <li>▪ 📺 Большой экран 75"</li>
-                    <li>▪ 🛋 Удобные кресла с функцией откидывания</li>
-                    <li>▪ 🍿 Закуски в меню</li>
-                </ul>
-                <p class="details">
-                    Отличный выбор для вечера с друзьями! В комфортных креслах вы сможете расслабиться и насладиться
-                    фильмом в компании.
-                </p>
-                <p class="price">Цена: <strong>3500 рублей</strong></p>
-                <button><a target="_blank" href="room2.html" class="book-button">Забронировать</a></button>
-            </div>
-
-            <div class="room-container">
-                <img src="png/3.jpg" alt="Люкс Комната" class="room-image">
-                <h3>Люкс Комната</h3>
-                <ul class="description">
-                    <li>▪ 👥 Для двоих</li>
-                    <li>▪ 🎥 3D графика с 80" экраном</li>
-                    <li>▪ 🍷 Мини-бар с выбором напитков</li>
-                    <li>▪ 🛋 Раскладные кресла для полного комфорта</li>
-                </ul>
-                <p class="details">
-                    Полное погружение в мир кино! Насладитесь 3D-фильмами с высоким качеством изображения и комфортом.
-                </p>
-                <p class="price">Цена: <strong>5000 рублей</strong></p>
-                <button><a target="_blank" href="room3.html" class="book-button">Забронировать</a></button>
-            </div>
-
-            <div class="room-container">
-                <img src="png/4.jpg" alt="Премиум Комната" class="room-image">
-                <h3>Премиум Комната</h3>
-                <ul class="description">
-                    <li>▪ 👥 Для двоих</li>
-                    <li>▪ 🎞 4K разрешение с 100" экраном</li>
-                    <li>▪ 🛋 Суперкомфортные кресла с массажем</li>
-                    <li>▪ 💖 Интимная атмосфера с приглушённым светом</li>
-                </ul>
-                <p class="details">
-                    Идеально для особых случаев. Погрузитесь в мир кино с невероятным качеством изображения и комфорта.
-                </p>
-                <p class="price">Цена: <strong>6500 рублей</strong></p>
-                <button><a target="_blank" href="room4.html" class="book-button">Забронировать</a></button>
-            </div>
-
-            <div class="room-container">
-                <img src="png/5.jpg" alt="VIP Комната" class="room-image">
-                <h3>VIP Комната</h3>
-                <ul class="description">
-                    <li>▪ 👥 Для двоих</li>
-                    <li>▪ 🎥 4K и 3D с эксклюзивным 120" экраном</li>
-                    <li>▪ 🎤 Микрофон для караоке</li>
-                    <li>▪ 💏 Уютная обстановка для уединения</li>
-                </ul>
-                <p class="details">
-                    Для тех, кто хочет насладиться фильмами на самом высоком уровне. Ваша приватность и комфорт — наш
-                    приоритет.
-                </p>
-                <p class="price">Цена: <strong>8000 рублей</strong></p>
-                <button><a target="_blank" href="room5.html" class="book-button">Забронировать</a></button>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 Кинотеатр | Все права защищены</p>
-    </footer>
-
+    <div class="particles" id="particles"></div>
 
     <script>
-        // Ждем 3 секунды перед тем, как скрыть загрузку и показать контент
-        setTimeout(function () {
-            document.querySelector('.loader').style.display = 'none'; // Скрываем загрузку
-            const content = document.querySelector('.container'); // Находим контейнер с контентом
-            content.style.display = 'block'; // Показываем контент
-            content.style.animation = 'fadeIn 0.5s forwards'; // Применяем анимацию появления
-        }, 3000);
-    </script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Анимация загрузки
+            setTimeout(function () {
+                document.getElementById("loaderScreen").style.opacity = "0";
+                setTimeout(() => {
+                    document.getElementById("loaderScreen").style.display = "none";
+                    document.getElementById("welcomeContainer").style.opacity = "1";
+                }, 1000);
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                // Показываем кнопку через 4 секунды
+                setTimeout(function () {
+                    document.getElementById("bookingButton").style.display = "block";
+                    document.getElementById("bookingButton").style.opacity = "1";
+                }, 4000);
+            }, 2000);
+
+            // Создание частиц
+            const particles = document.getElementById("particles");
+            const particleCount = 100;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement("div");
+                particle.classList.add("particle", `particle-${Math.floor(Math.random() * 5) + 1}`);
+                particle.style.left = Math.random() * 100 + "vw";
+                particle.style.animationDelay = Math.random() * 5 + "s"; // Случайная задержка
+                particles.appendChild(particle);
+            }
+
+            // Обработка события нажатия на кнопку
+            document.getElementById("bookingButton").onclick = function () {
+                window.location.href = "film.html"; // Переход на страницу film.html
+            };
+        });
+    </script>
 </body>
 
 </html>
