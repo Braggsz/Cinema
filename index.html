@@ -68,6 +68,9 @@
             animation: fadeIn 1s forwards;
             position: relative;
             z-index: 1;
+            padding: 20px; /* Отступ для мобильных */
+            max-width: 90%; /* Максимальная ширина для мобильных */
+            margin: 0 auto; /* Центрирование */
         }
 
         .welcome-text {
@@ -253,44 +256,55 @@
         @media (max-width: 768px) {
             .welcome-text {
                 font-size: 2.5rem; /* Меньший шрифт для мобильных */
+                white-space: normal; /* Перенос текста на мобильных */
+                overflow: visible; /* Видимость текста */
             }
 
             .button {
                 padding: 10px 30px;
                 font-size: 1.2rem;
+                margin: 10px 0; /* Отступы вокруг кнопки */
+            }
+
+            /* Эффект лучей */
+            .rays {
+                width: 200px; /* Уменьшение размера лучей для мобильных */
+                height: 200px; /* Уменьшение высоты лучей для мобильных */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .welcome-text {
+                font-size: 2rem; /* Еще меньше шрифт для маленьких экранов */
+            }
+
+            .button {
+                font-size: 1rem; /* Меньший шрифт для кнопок */
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="loader-screen" id="loaderScreen">
+    <div class="loader-screen">
         <div class="loader"></div>
     </div>
-
-    <div class="welcome-container" id="welcomeContainer">
-        <div class="rays"></div> <!-- Эффект лучей -->
-        <div class="welcome-text" id="welcomeText">Добро пожаловать в LuxCinema</div>
-        <button class="button" id="bookingButton" style="display:none;">Перейти к бронированию комнат</button>
-    </div>
-
     <div class="particles" id="particles"></div>
+    <div class="welcome-container">
+        <div class="welcome-text">Добро пожаловать в LuxCinema!</div>
+        <div class="rays"></div>
+        <button id="bookingButton" class="button">Забронировать билет</button>
+    </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // Анимация загрузки
-            setTimeout(function () {
-                document.getElementById("loaderScreen").style.opacity = "0";
+            // Скрытие загрузочного экрана
+            setTimeout(() => {
+                document.querySelector('.loader-screen').style.opacity = "0";
                 setTimeout(() => {
-                    document.getElementById("loaderScreen").style.display = "none";
-                    document.getElementById("welcomeContainer").style.opacity = "1";
+                    document.querySelector('.loader-screen').style.display = "none";
+                    document.querySelector('.welcome-container').style.opacity = "1";
                 }, 1000);
-
-                // Показываем кнопку через 4 секунды
-                setTimeout(function () {
-                    document.getElementById("bookingButton").style.display = "block";
-                    document.getElementById("bookingButton").style.opacity = "1";
-                }, 4000);
             }, 2000);
 
             // Создание частиц
