@@ -38,7 +38,7 @@
             align-items: center;
             z-index: 999;
             opacity: 1;
-            transition: opacity 0.5s ease;
+            transition: opacity 1s ease;
         }
 
         .loader {
@@ -65,7 +65,7 @@
             text-align: center;
             opacity: 0;
             transform: translateY(-50px);
-            animation: fadeIn 1s forwards 0.5s; /* Появление текста с задержкой */
+            animation: fadeIn 1s forwards;
             position: relative;
             z-index: 1;
             padding: 20px; /* Отступ для мобильных */
@@ -82,6 +82,39 @@
             animation: typing 4s steps(30, end), blink-caret 0.75s step-end infinite; /* Добавлена анимация */
             text-shadow: 0 0 20px rgba(255, 64, 129, 0.5);
             color: #ff4081; /* Цвет текста */
+            position: relative; /* Для лучей */
+        }
+
+        /* Эффект лучей */
+        .rays {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px; /* Длина лучей */
+            height: 300px; /* Высота лучей */
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+            animation: raysAnimation 4s infinite;
+            transform: translate(-50%, -50%);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        @keyframes raysAnimation {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0.5;
+            }
         }
 
         /* Кнопка */
@@ -95,39 +128,44 @@
             box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
             opacity: 0;
             transform: translateY(20px);
-            animation: fadeIn 1s forwards 5s, pulse 1s infinite; /* Появление кнопки с анимацией пульсации */
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInButton 1.5s forwards 2s, pulse 2s infinite; /* Появление кнопки с задержкой и пульсация */
             font-weight: 600; /* Более жирный шрифт */
             letter-spacing: 1px; /* Расстояние между буквами */
+            position: relative; /* Для добавления эффектов */
+            overflow: hidden; /* Обрезка внутреннего содержимого */
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 300%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translateX(-50%) scale(0);
+            transition: transform 0.5s;
+            z-index: 0;
         }
 
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            100% {
-                transform: scale(1);
-            }
+        .button:hover::before {
+            transform: translateX(-50%) scale(1); /* Эффект при наведении */
         }
 
-        /* Анимация текста */
+        .button:hover {
+            background-color: #e91e63; /* Цвет при наведении */
+            transform: translateY(10px) scale(1.05); /* Увеличение при наведении */
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Анимация кнопки */
         @keyframes typing {
             from {
                 width: 0;
             }
+
             to {
                 width: 100%;
             }
@@ -136,6 +174,40 @@
         @keyframes blink-caret {
             50% {
                 border-color: transparent;
+            }
+        }
+
+        @keyframes fadeInButton {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
             }
         }
 
@@ -166,6 +238,7 @@
                 transform: translateY(0);
                 opacity: 1;
             }
+
             100% {
                 transform: translateY(-100vh);
                 opacity: 0;
@@ -193,18 +266,33 @@
             animation-duration: 7s;
         }
 
+        /* Пульсация кнопки */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
         /* Мобильный адаптивный дизайн */
-        @media (max-width: 768px) {
+        @media (max-width: 600px) {
             .welcome-text {
-                font-size: 2.5rem; /* Меньший шрифт для мобильных */
-                white-space: normal; /* Перенос текста на мобильных */
-                overflow: visible; /* Видимость текста */
-                animation: typing 2.5s steps(30, end), blink-caret 0.75s step-end infinite; /* Добавлено для мобильных */
+                font-size: 2.5rem; /* Уменьшенный размер текста */
             }
 
             .button {
-                padding: 10px 20px; /* Меньшие отступы для кнопки */
-                font-size: 1.2rem; /* Меньший шрифт для кнопки */
+                font-size: 1.2rem; /* Уменьшенный размер кнопки */
+                padding: 10px 20px; /* Уменьшенные отступы кнопки */
+            }
+
+            .rays {
+                width: 200px; /* Меньше радиус лучей */
+                height: 200px; /* Меньше высота лучей */
             }
         }
     </style>
@@ -214,52 +302,52 @@
     <div class="loader-screen">
         <div class="loader"></div>
     </div>
-    <div class="particles" id="particles"></div>
+
     <div class="welcome-container">
-        <div class="welcome-text">Добро пожаловать в LuxCinema!</div>
-        <button id="bookingButton" class="button">Забронировать комнату</button>
+        <div class="rays"></div>
+        <h1 class="welcome-text">Добро пожаловать в LuxCinema!</h1>
+        <button class="button">Забронировать комнату</button>
+    </div>
+
+    <div class="particles">
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+        <div class="particle particle-3"></div>
+        <div class="particle particle-4"></div>
+        <div class="particle particle-5"></div>
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Скрытие загрузочного экрана
+        // Загрузка
+        window.onload = function () {
+            const loaderScreen = document.querySelector('.loader-screen');
+            loaderScreen.style.opacity = 0;
             setTimeout(() => {
-                document.querySelector('.loader-screen').style.opacity = "0";
-                setTimeout(() => {
-                    document.querySelector('.loader-screen').style.display = "none";
+                loaderScreen.style.display = 'none';
+            }, 1000);
+        };
 
-                    // Появление текста
-                    const welcomeText = document.querySelector('.welcome-text');
+        // Генерация частиц
+        const particlesContainer = document.querySelector('.particles');
 
-                    setTimeout(() => {
-                        // Появление кнопки
-                        document.getElementById("bookingButton").style.opacity = "1"; // После исчезновения текста кнопка становится видимой
-                    }, 4000); // Задержка для полного исчезновения текста
-                }, 1000);
-            }, 2000);
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDuration = Math.random() * (8 - 3) + 3 + 's'; // Случайная длительность анимации
+            particlesContainer.appendChild(particle);
 
-            // Создание частиц
-            const particles = document.getElementById("particles");
-            const particleCount = 100;
+            // Удаление частицы после завершения анимации
+            particle.addEventListener('animationend', () => {
+                particle.remove();
+            });
+        }
 
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement("div");
-                particle.classList.add("particle", `particle-${Math.floor(Math.random() * 5) + 1}`);
-                particle.style.left = Math.random() * 100 + "vw";
-                particle.style.animationDelay = Math.random() * 5 + "s"; // Случайная задержка
-                particles.appendChild(particle);
-            }
-
-            // Обработка события нажатия на кнопку
-            document.getElementById("bookingButton").onclick = function () {
-                window.location.href = "film.html"; // Переход на страницу film.html
-            };
-        });
+        setInterval(createParticle, 300); // Создание частиц каждые 300 мс
     </script>
 </body>
 
 </html>
 
-</body>
 
 </html>
