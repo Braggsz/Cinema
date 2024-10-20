@@ -29,3 +29,16 @@ function scrollToSection(sectionId) {
 function bookRoom(url) {
     window.location.href = url; // Перенаправление на страницу бронирования
 }
+
+
+const urlParams = new URLSearchParams(window.location.search);
+const referrerId = urlParams.get('ref'); // Получаем реферальный ID из URL
+
+if (referrerId) {
+    // Отправляем запрос на сервер бота с реферальным ID
+    fetch('https://your-bot-server.com/referral', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ referrerId: referrerId })
+    });
+}
