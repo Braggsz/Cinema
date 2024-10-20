@@ -52,9 +52,9 @@
             <div class="photo-gallery">
                 <div class="slider">
                     <div class="slides">
-                        <img src="room2-1.jpg" alt="Комната 2 Фото 1">
-                        <img src="room2-2.jpg" alt="Комната 2 Фото 2">
-                        <img src="room2-3.jpg" alt="Комната 2 Фото 3">
+                        <img src="png/1.jpg" alt="Комната 2 Фото 1">
+                        <img src="png/2.jpg" alt="Комната 2 Фото 2">
+                        <img src="png/3.jpg" alt="Комната 2 Фото 3">
                     </div>
                     <button class="prev" onclick="changeSlide(-1, 2)">&#10094;</button>
                     <button class="next" onclick="changeSlide(1, 2)">&#10095;</button>
@@ -151,25 +151,6 @@
             <button onclick="bookRoom('room5.html')">Забронировать</button>
         </div>
     </main>
-    <script>
-        }
-  // Извлекаем параметр ref из URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const ref = urlParams.get('ref');
-
-  if (ref) {
-    // Отправляем информацию на ваш сервер (например, через fetch)
-    fetch('http://127.0.0.1:5000/track-referral', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ user_id: ref }),
-    });
-  }
-}
-
-    </script>
 
     <script src="main.js"></script>
 </body>
