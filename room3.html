@@ -3,292 +3,292 @@
 
 <head>
     <meta charset="UTF-8">
-    <!DOCTYPE html>
-    <html lang="ru">
-    
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Ошибка 404 - Страница временно недоступна</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-            integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM8RjH8Zl1z1KjI+9xkXXMkH+H2fheM1e1ctvH4" crossorigin="anonymous">
-        <style>
-            * {
-                box-sizing: border-box;
-                margin: 0;
-                padding: 0;
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ошибка 404 - Страница временно недоступна</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM8RjH8Zl1z1KjI+9xkXXMkH+H2fheM1e1ctvH4" crossorigin="anonymous">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(135deg, #3f2b96, #a8caba);
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            color: #ffffff;
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/white-linen.png');
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .message {
+            background-color: rgba(28, 28, 28, 0.9);
+            padding: 50px 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            margin: 0 20px;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 0.8s ease forwards;
+            border: 2px solid #ff4757;
+            overflow: hidden;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
             }
-    
-            body {
-                background: linear-gradient(135deg, #3f2b96, #a8caba);
-                font-family: 'Arial', sans-serif;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-                position: relative;
-                overflow: hidden;
-                color: #ffffff;
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
-    
-            .background {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: url('https://www.transparenttextures.com/patterns/white-linen.png');
-                opacity: 0.1;
-                z-index: 0;
+        }
+
+        h1 {
+            font-size: 48px;
+            color: #ff4757;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+            animation: glitch 1.5s infinite;
+        }
+
+        @keyframes glitch {
+            0% {
+                text-shadow: 2px 2px 0 rgba(255, 0, 0, 0.6);
             }
-    
-            .message {
-                background-color: rgba(28, 28, 28, 0.9);
-                padding: 50px 30px;
-                border-radius: 20px;
-                box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
-                max-width: 600px;
-                margin: 0 20px;
-                position: relative;
-                z-index: 1;
-                animation: fadeIn 0.8s ease forwards;
-                border: 2px solid #ff4757;
-                overflow: hidden;
+
+            25% {
+                text-shadow: -2px -2px 0 rgba(255, 0, 0, 0.4);
             }
-    
-            @keyframes fadeIn {
-                from {
-                    opacity: 0;
-                    transform: translateY(-30px);
-                }
-    
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
+
+            50% {
+                text-shadow: 2px 2px 0 rgba(255, 0, 0, 0.2);
             }
-    
-            h1 {
-                font-size: 48px;
-                color: #ff4757;
-                margin-bottom: 20px;
-                text-transform: uppercase;
-                letter-spacing: 1.5px;
-                text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
-                animation: glitch 1.5s infinite;
+
+            75% {
+                text-shadow: -2px -2px 0 rgba(255, 0, 0, 0.4);
             }
-    
-            @keyframes glitch {
-                0% {
-                    text-shadow: 2px 2px 0 rgba(255, 0, 0, 0.6);
-                }
-    
-                25% {
-                    text-shadow: -2px -2px 0 rgba(255, 0, 0, 0.4);
-                }
-    
-                50% {
-                    text-shadow: 2px 2px 0 rgba(255, 0, 0, 0.2);
-                }
-    
-                75% {
-                    text-shadow: -2px -2px 0 rgba(255, 0, 0, 0.4);
-                }
-    
-                100% {
-                    text-shadow: 2px 2px 0 rgba(255, 0, 0, 0.6);
-                }
+
+            100% {
+                text-shadow: 2px 2px 0 rgba(255, 0, 0, 0.6);
             }
-    
-            p {
-                font-size: 22px;
-                color: #dcdde1;
-                margin: 10px 0;
-                line-height: 1.6;
+        }
+
+        p {
+            font-size: 22px;
+            color: #dcdde1;
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 20px;
+            color: #fbc531;
+        }
+
+        .reason {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff4757;
+            border-top: 2px solid #ff4757;
+            padding-top: 15px;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
             }
-    
-            .footer {
-                margin-top: 30px;
-                font-size: 20px;
-                color: #fbc531;
+
+            50% {
+                transform: scale(1.05);
             }
-    
-            .reason {
-                margin-top: 20px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: #ff4757;
-                border-top: 2px solid #ff4757;
-                padding-top: 15px;
-                animation: pulse 1s infinite;
+
+            100% {
+                transform: scale(1);
             }
-    
-            @keyframes pulse {
-                0% {
-                    transform: scale(1);
-                }
-    
-                50% {
-                    transform: scale(1.05);
-                }
-    
-                100% {
-                    transform: scale(1);
-                }
-            }
-    
-            .reason i {
-                font-size: 36px;
-                margin-right: 10px;
-            }
-    
-            .back-button {
-                display: inline-flex;
-                align-items: center;
-                margin-top: 30px;
-                padding: 15px 30px;
-                font-size: 22px;
-                color: #ffffff;
-                background-color: #1e90ff;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                text-decoration: none;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-                transition: background-color 0.3s ease, transform 0.2s ease;
-                animation: fadeIn 1s ease forwards;
-            }
-    
-            .back-button:hover {
-                background-color: #1a73e8;
-                transform: translateY(-2px);
-            }
-    
-            .back-button i {
-                margin-right: 10px;
-            }
-    
-            .divider {
-                margin: 20px 0;
-                border: 1px solid #e9ecef;
-            }
-    
-            .glow {
-                color: #ff4757;
+        }
+
+        .reason i {
+            font-size: 36px;
+            margin-right: 10px;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 30px;
+            padding: 15px 30px;
+            font-size: 22px;
+            color: #ffffff;
+            background-color: #1e90ff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .back-button:hover {
+            background-color: #1a73e8;
+            transform: translateY(-2px);
+        }
+
+        .back-button i {
+            margin-right: 10px;
+        }
+
+        .divider {
+            margin: 20px 0;
+            border: 1px solid #e9ecef;
+        }
+
+        .glow {
+            color: #ff4757;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.7), 0 0 20px rgba(255, 0, 0, 0.5), 0 0 30px rgba(255, 0, 0, 0.3);
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% {
                 text-shadow: 0 0 10px rgba(255, 0, 0, 0.7), 0 0 20px rgba(255, 0, 0, 0.5), 0 0 30px rgba(255, 0, 0, 0.3);
-                animation: glow 1.5s infinite alternate;
             }
-    
-            @keyframes glow {
-                0% {
-                    text-shadow: 0 0 10px rgba(255, 0, 0, 0.7), 0 0 20px rgba(255, 0, 0, 0.5), 0 0 30px rgba(255, 0, 0, 0.3);
-                }
-    
-                100% {
-                    text-shadow: 0 0 20px rgba(255, 0, 0, 1), 0 0 30px rgba(255, 0, 0, 0.7), 0 0 40px rgba(255, 0, 0, 0.5);
-                }
+
+            100% {
+                text-shadow: 0 0 20px rgba(255, 0, 0, 1), 0 0 30px rgba(255, 0, 0, 0.7), 0 0 40px rgba(255, 0, 0, 0.5);
             }
-    
-            .floating-icon {
-                position: absolute;
-                width: 80px;
-                height: 80px;
-                bottom: 20px;
-                right: 20px;
-                animation: float 3s ease-in-out infinite;
-                z-index: 1;
+        }
+
+        .floating-icon {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            bottom: 20px;
+            right: 20px;
+            animation: float 3s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translatey(0);
             }
-    
-            @keyframes float {
-                0% {
-                    transform: translatey(0);
-                }
-    
-                50% {
-                    transform: translatey(-15px);
-                }
-    
-                100% {
-                    transform: translatey(0);
-                }
+
+            50% {
+                transform: translatey(-15px);
             }
-    
-            .bg-animation {
-                background-image: linear-gradient(135deg, rgba(63, 43, 150, 0.8), rgba(168, 202, 186, 0.8)),
-                    url('https://images.unsplash.com/photo-1541698433380-083e2c2d0f60');
-                background-size: cover;
-                background-position: center;
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                z-index: -1;
-                animation: bgAnimation 10s linear infinite;
+
+            100% {
+                transform: translatey(0);
             }
-    
-            @keyframes bgAnimation {
-                0% {
-                    opacity: 1;
-                }
-    
-                50% {
-                    opacity: 0.6;
-                }
-    
-                100% {
-                    opacity: 1;
-                }
+        }
+
+        .bg-animation {
+            background-image: linear-gradient(135deg, rgba(63, 43, 150, 0.8), rgba(168, 202, 186, 0.8)),
+                url('https://images.unsplash.com/photo-1541698433380-083e2c2d0f60');
+            background-size: cover;
+            background-position: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            animation: bgAnimation 10s linear infinite;
+        }
+
+        @keyframes bgAnimation {
+            0% {
+                opacity: 1;
             }
-        </style>
-    </head>
-    
-    <body>
-        <div class="bg-animation"></div>
-        <div class="background"></div>
-        <div class="message">
-            <h1 class="glow">Ошибка 404!</h1>
-            <p>Страница временно недоступна.</p>
-            <p>В данный момент проводятся технические работы.</p>
-            <p>Ожидаемое время восстановления: завтра, 21:00.</p>
-    
-            <div class="divider"></div>
-    
-            <div class="reason">
-                <i class="fas fa-tools"></i>
-                <span>Причина: Технические работы</span>
-            </div>
-    
-            <div class="divider"></div>
-    
-            <a href="javascript:history.back()" class="back-button">
-                <i class="fas fa-arrow-left"></i>
-                Вернуться назад
-            </a>
-    
-            <div class="footer">Спасибо за ваше понимание!</div>
+
+            50% {
+                opacity: 0.6;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-animation"></div>
+    <div class="background"></div>
+    <div class="message">
+        <h1 class="glow">Ошибка 404!</h1>
+        <p>Страница временно недоступна.</p>
+        <p>В данный момент проводятся технические работы.</p>
+        <p>Ожидаемое время восстановления: завтра, 21:00.</p>
+
+        <div class="divider"></div>
+
+        <div class="reason">
+            <i class="fas fa-tools"></i>
+            <span>Причина: Технические работы</span>
         </div>
-    
-    
-    
-        <script>
-            // Добавление эффекта помехи к заголовку
-            const title = document.querySelector('h1');
-            let isGlitching = false;
-    
-            const glitchEffect = () => {
-                if (isGlitching) return;
-                isGlitching = true;
-    
-                setInterval(() => {
-                    title.style.textShadow = Math.random() > 0.5 ? '2px 2px 0 rgba(255, 0, 0, 0.6)' : 'none';
-                }, 150);
-            };
-    
-            glitchEffect();
-        </script>
-    </body>
-    
-    </html>
-    
+
+        <div class="divider"></div>
+
+        <button class="back-button" onclick="goBack()">
+            <i class="fas fa-arrow-left"></i> Вернуться назад
+        </button>
+    </div>
+
+    <img class="floating-icon" src="https://img.icons8.com/ios-filled/100/ffffff/maintenance.png"
+        alt="Maintenance Icon" />
+
+    <script>
+        function goBack() {
+            if (document.referrer) {
+                window.history.back();
+            } else {
+                window.location.href = '/'; // Резервная ссылка на главную страницу
+            }
+        }
+
+        // Эффект помехи к заголовку
+        const title = document.querySelector('h1');
+        let isGlitching = false;
+
+        const glitchEffect = () => {
+            if (isGlitching) return;
+            isGlitching = true;
+
+            setInterval(() => {
+                title.style.textShadow = Math.random() > 0.5 ? '2px 2px 0 rgba(255, 0, 0, 0.6)' : 'none';
+            }, 150);
+        };
+
+        glitchEffect();
+    </script>
+</body>
+
+</html>
