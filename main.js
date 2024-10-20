@@ -28,19 +28,3 @@ function scrollToSection(sectionId) {
 
 function bookRoom(url) {
     window.location.href = url; // Перенаправление на страницу бронирования
-}
-  // Извлекаем параметр ref из URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const ref = urlParams.get('ref');
-
-  if (ref) {
-    // Отправляем информацию на ваш сервер (например, через fetch)
-    fetch('https://your-server.com/track-referral', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ user_id: ref }),
-    });
-  }
-}
