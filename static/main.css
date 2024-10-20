@@ -1,0 +1,145 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  position: relative;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap; /* Позволяет кнопкам переноситься на новую строку на маленьких экранах */
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav button {
+  background-color: #555;
+  color: white;
+  border: none;
+  padding: 8px 12px; /* Увеличены отступы для лучшей доступности */
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+nav button:hover {
+  background-color: #777;
+}
+
+main {
+  padding: 20px;
+}
+
+.room {
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.photo-gallery {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px; /* Скругленные углы для галереи */
+}
+
+.slider {
+  position: relative;
+  width: 100%;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.slides img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+}
+
+button.prev,
+button.next {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  padding: 10px;
+}
+
+button.prev {
+  left: 10px;
+}
+
+button.next {
+  right: 10px;
+}
+
+.description {
+  margin-top: 10px;
+}
+
+.description p {
+  margin: 5px 0;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+/* Адаптивные стили */
+@media (max-width: 768px) {
+  nav button {
+      padding: 6px 10px; /* Уменьшение размера кнопок на мобильных */
+      margin-left: 5px; /* Уменьшение отступа */
+  }
+
+  .footer-content {
+      flex-direction: column; /* Вертикальное расположение для мобильных */
+      align-items: flex-start; /* Выравнивание по левому краю */
+  }
+
+  main {
+      padding: 15px; /* Уменьшение отступов для мобильных */
+  }
+
+  .room {
+      padding: 8px; /* Уменьшение отступов внутри комнаты */
+  }
+
+  button.prev,
+  button.next {
+      padding: 8px; /* Уменьшение размера кнопок */
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+      font-size: 24px; /* Уменьшение размера заголовка */
+  }
+
+  h3 {
+      font-size: 20px; /* Уменьшение размера заголовков */
+  }
+
+  nav button {
+      padding: 5px 8px; /* Еще большее уменьшение размеров кнопок */
+  }
+
+  .description p {
+      font-size: 14px; /* Уменьшение размера шрифта для описания */
+  }
+
+  ul {
+      padding-left: 15px; /* Уменьшение отступа списка */
+  }
+}
