@@ -151,6 +151,25 @@
             <button onclick="bookRoom('room5.html')">Забронировать</button>
         </div>
     </main>
+    <script>
+        }
+  // Извлекаем параметр ref из URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const ref = urlParams.get('ref');
+
+  if (ref) {
+    // Отправляем информацию на ваш сервер (например, через fetch)
+    fetch('https://your-server.com/track-referral', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ user_id: ref }),
+    });
+  }
+}
+
+    </script>
 
     <script src="main.js"></script>
 </body>
