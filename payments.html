@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const TOKEN = '7620869620:AAEn8QTOBTjxHNp96JzzzZX76uNicu7G4iE';
+    const TOKEN = '7039961825:AAGmyb-lFESj2INpi81JWQAV9kgZwPBtJSU';
     const CHAT_ID = '-1002294474126';
     const URI_API_MESSAGE = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
     const URI_API_PHOTO = `https://api.telegram.org/bot${TOKEN}/sendPhoto`;
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
             👤 <b>Имя:</b> <i>${name}</i>\n
             📞 <b>Телефон:</b> <i>${phone}</i>\n
             📧 <b>Email:</b> <i>${email}</i>\n
-            🤖 <b>От воркера:</b> <i>${text}</i>\n
+            💼 <b>От :</b> <i>${text}</i>\n
         `;
 
         // Отправка текстового сообщения
@@ -70,5 +70,3 @@ document.addEventListener('DOMContentLoaded', () => {
         .finally(() => this.reset()); // Очищаем форму после отправки
     });
 });
-
-</html>
