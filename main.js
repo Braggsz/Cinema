@@ -30,20 +30,3 @@ function bookRoom(url) {
     window.location.href = url; // Перенаправление на страницу бронирования
 }
 
-<script>
-  // Получаем параметр ref из URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const ref = urlParams.get('ref');
-
-  if (ref) {
-    // Отправляем запрос к боту
-    fetch(`https://api.telegram.org/bot7039961825:AAGmyb-lFESj2INpi81JWQAV9kgZwPBtJSU/sendMessage?chat_id=${ref}&text=По+вашей+реферальной+ссылке+кто-то+перешел!`)
-      .then(response => response.json())
-      .then(data => {
-        console.log('Уведомление отправлено:', data);
-      })
-      .catch(error => {
-        console.error('Ошибка при отправке уведомления:', error);
-      });
-  }
-</script>
