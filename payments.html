@@ -1,145 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-      @import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Open+Sans:400,300,600);
-* {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
+document.addEventListener('DOMContentLoaded', () => {
+    const TOKEN = '7620869620:AAEn8QTOBTjxHNp96JzzzZX76uNicu7G4iE';
+    const CHAT_ID = '-1002294474126';
+    const URI_API_MESSAGE = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
+    const URI_API_PHOTO = `https://api.telegram.org/bot${TOKEN}/sendPhoto`;
 
-body {
-  font-family: 'open sans', helvetica, arial, sans;
-  background-size: cover;
-}
+    // Функция для получения текущей даты и времени в формате "дд.мм.гггг | чч:мм"
+    function getCurrentDateTime() {
+        const now = new Date();
+        const day = String(now.getDate()).padStart(2, '0');
+        const month = String(now.getMonth() + 1).padStart(2, '0'); // Месяцы начинаются с 0
+        const year = now.getFullYear();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        return `${day}.${month}.${year} | ${hours}:${minutes}`;
+    }
 
-.log-form {
-  width: 40%;
-  min-width: 320px;
-  max-width: 475px;
-  background: #fff;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  -webkit-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
-          box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
-}
+    document.getElementById('telegramForm').addEventListener('submit', function (event) {
+        event.preventDefault();
 
-.log-form form {
-  display: block;
-  width: 100%;
-  padding: 2em;
-}
+        // Получаем данные из формы
+        const name = this.name.value;
+        const phone = this.phone.value;
+        const email = this.email.value;
+        const text = this.text.value;
+        const fileInput = this.file.files[0]; // Получаем загруженный файл
 
-.log-form h2 {
-  text-align: center;
-  width: 100%;
-  color: #5d5d5d;
-  font-family: 'open sans condensed';
-  font-size: 1.35em;
-  display: block;
-  background: #2a2a2a;
-  width: 100%;
-  text-transform: uppercase;
-  padding: .75em 1em .75em 1.5em;
-  -webkit-box-shadow: inset 0px 1px 1px fadeout(white, 95%);
-          box-shadow: inset 0px 1px 1px fadeout(white, 95%);
-  border: 1px solid #1d1d1d;
-  margin: 0;
-  font-weight: 200;
-}
+        // Получаем текущую дату и время
+        const currentDateTime = getCurrentDateTime();
 
-.log-form input {
-  border-radius: 10px;
-  display: block;
-  margin: auto auto;
-  width: 100%;
-  margin-bottom: 2em;
-  padding: .5em 0;
-  border: none;
-  border-bottom: 1px solid #eaeaea;
-  padding-bottom: 1.25em;
-  color: #757575;
-}
+        // Формируем текст сообщения с датой и временем
+        const textMessage = `
+            📝 <b>Новая заявка с сайта</b>\n
+            🗓 <b>Дата:</b> ${currentDateTime}\n
+            👤 <b>Имя:</b> <i>${name}</i>\n
+            📞 <b>Телефон:</b> <i>${phone}</i>\n
+            📧 <b>Email:</b> <i>${email}</i>\n
+            🤖 <b>От воркера:</b> <i>${text}</i>\n
+        `;
 
-.log-form input:focus {
-  outline: none;
-}
+        // Отправка текстового сообщения
+        fetch(URI_API_MESSAGE, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: CHAT_ID,
+                parse_mode: 'html',
+                text: textMessage,
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (fileInput) {
+                // Если файл прикреплен, отправляем его
+                const formData = new FormData();
+                formData.append('chat_id', CHAT_ID);
+                formData.append('photo', fileInput); // Прикрепляем фото
 
-.log-form .btn {
-  border-radius: 15px;
-  display: inline-block;
-  background: #1fb5bf;
-  border: 1px solid #1ba0a9;
-  padding: .5em 2em;
-  color: white;
-  margin-right: .5em;
-  -webkit-box-shadow: inset 0px 1px 0px fadeout(white, 80%);
-          box-shadow: inset 0px 1px 0px fadeout(white, 80%);
-}
+                fetch(URI_API_PHOTO, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(() => alert('Квитанция отправлена!'))
+                .catch(error => console.error('Ошибка при отправке фото:', error));
+            } else {
+                alert('Заявка отправлена без фото!');
+            }
+        })
+        .catch(error => console.error('Ошибка при отправке заявки:', error))
+        .finally(() => this.reset()); // Очищаем форму после отправки
+    });
+});
 
-.log-form .btn:hover {
-  background: #23cad5;
-}
-
-.log-form .btn:active {
-  background: #1fb5bf;
-  -webkit-box-shadow: inset 0px 1px 1px fadeout(black, 90%);
-          box-shadow: inset 0px 1px 1px fadeout(black, 90%);
-}
-
-.log-form .btn:focus {
-  outline: none;
-}
-
-.log-form .forgot {
-  color: #33d3de;
-  line-height: .5em;
-  position: relative;
-  top: 2.5em;
-  text-decoration: none;
-  font-size: .75em;
-  margin: 0;
-  padding: 0;
-  float: right;
-}
-
-.log-form .forgot:hover {
-  color: #1ba0a9;
-}
-/*# sourceMappingURL=main.css.map */
-    </style>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
-    
-</head>
-<body>
-<div class="container">
-    <div class="log-form">
-        <h2>Отправка квитанции</h2>
-        <form class="telegram-form" id="telegramForm">
-          <input type="text" name="name" placeholder="Имя" autocomplete="off" required />
-          <input type="text" name="phone" placeholder="Телефон" autocomplete="off" required />
-          <input type="text" name="email" placeholder="Email" autocomplete="off" required />
-          <textarea placeholder="Промокод" name="text"></textarea>
-          <input type="file" name="file" accept="image/*">
-          <button type="submit" class="btn">отправить</button>
-      </form>
-      
-      </div>
-</div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="main().js"></script>
-    
-</body>
-</html>
-    
-</body>
 </html>
