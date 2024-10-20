@@ -138,32 +138,6 @@
             margin-right: 10px;
         }
 
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            margin-top: 30px;
-            padding: 15px 30px;
-            font-size: 22px;
-            color: #ffffff;
-            background-color: #1e90ff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            animation: fadeIn 1s ease forwards;
-        }
-
-        .back-button:hover {
-            background-color: #1a73e8;
-            transform: translateY(-2px);
-        }
-
-        .back-button i {
-            margin-right: 10px;
-        }
-
         .divider {
             margin: 20px 0;
             border: 1px solid #e9ecef;
@@ -256,24 +230,12 @@
         </div>
 
         <div class="divider"></div>
-
-        <button class="back-button" onclick="goBack()">
-            <i class="fas fa-arrow-left"></i> Вернуться назад
-        </button>
     </div>
 
     <img class="floating-icon" src="https://img.icons8.com/ios-filled/100/ffffff/maintenance.png"
         alt="Maintenance Icon" />
 
     <script>
-        function goBack() {
-            if (document.referrer) {
-                window.history.back();
-            } else {
-                window.location.href = '/'; // Резервная ссылка на главную страницу
-            }
-        }
-
         // Эффект помехи к заголовку
         const title = document.querySelector('h1');
         let isGlitching = false;
@@ -289,6 +251,10 @@
 
         glitchEffect();
     </script>
+</body>
+
+</html>
+
 </body>
 
 </html>
