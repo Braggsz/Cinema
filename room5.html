@@ -114,7 +114,7 @@
 		
 		.payment {
 			width: 100%;
-			background-color: #0f0f0f7a;
+			background-color: #000000c2;
 			min-width: 320px;
 			overflow: hidden;
 			position: relative;
@@ -132,7 +132,7 @@
 			padding: clamp(16px, 16px + (28 - 16) * var(--adaptive), 28px);
 			padding-top: 0;
 			position: relative;
-			background: linear-gradient(180deg, #080808 0%, #3f1717 100%) padding-box, linear-gradient(180deg, #3b1111 0%, #312d2d 100%) border-box;
+			background: linear-gradient(180deg, #a09e9e 0%, #8022229a 100%) padding-box, linear-gradient(180deg, #ca1d1d 0%, #d43030 100%) border-box;
 			border: 1.5px solid transparent;
 		}
 		.payment__card::after {
@@ -145,7 +145,7 @@
 			height: 100%;
 			border-radius: 32px;
 			z-index: -1;
-			background: linear-gradient(#090909ab 0 0) padding-box, linear-gradient(180deg, #58272733 0%, #682020 100%) border-box;
+			background: linear-gradient(#d31d1d 0 0) padding-box, linear-gradient(180deg, #fd0000 0%, #ff0303 100%) border-box;
 			border: 1.5px solid transparent;
 		}
 		.payment__card::before {
@@ -174,7 +174,7 @@
 			color: #c9c5c5;
 			padding: 0.65em;
 			border-radius: 100px;
-			background: #141414;
+			background: #1a1818de;
 			display: flex;
 			gap: 5px;
 		}
@@ -205,7 +205,7 @@
 			position: relative;
 			padding: 16px;
 			border-radius: 12px;
-			background: rgba(0, 0, 0, 0.5);
+			background: rgba(0, 0, 0, 0.808);
 			width: fit-content;
 			display: flex;
 			align-items: center;
@@ -242,7 +242,7 @@
 			flex-shrink: 0;
 		}
 		.payment__copy::before {
-			background-color: #00000000;
+			background-color: #000000c7;
 			content:'';
 			display: block;
 			position: absolute;
@@ -287,7 +287,7 @@
 		/* Footer */
 		
 		.payment__footer {
-			color: #777272;
+			color: #808080;
 			text-align: center;
 			margin-top: 20px;
 		}
@@ -298,7 +298,7 @@
 		.payment__footer-text {
 			padding: 1em;
 			border-radius: 0.5em;
-			background: #000000c2;
+			background: #201f1fc2;
 			width: fit-content;
 			margin: 0 auto;
 			margin-bottom: 0.438em;
@@ -308,10 +308,10 @@
 			line-height: 1.43;
 			border-radius: 8px;
 			padding: 12px;
-			background: rgba(194, 109, 109, 0.46);
+			background: rgba(173, 54, 54, 0.959);
 		}
 		.payment__note b {
-			color: #FF6565;
+			color: #ce3a3a;
 		}
 		
 		.payment__button {
@@ -352,7 +352,7 @@
 			width: 100%;
 			height: 100%;
 			padding: 15px;
-			background: rgba(173, 171, 171, 0.8);
+			background: rgba(68, 67, 67, 0.767);
 			overflow: hidden;
 			overflow-y: auto;
 			-webkit-overflow-scrolling: touch; 
@@ -374,10 +374,10 @@
 			max-width: 717px; 
 			padding: clamp(20px, 20px + (30 - 20) * var(--adaptive), 30px); 
 			border-radius: 32px;
-			border: 1.50px solid rgba(255, 255, 255, 0.055);
+			border: 1.50px solid rgba(131, 131, 131, 0.158);
 			backdrop-filter: blur(60px);
 			-webkit-backdrop-filter: blur(60px);
-			background: rgba(92, 65, 65, 0.43);
+			background: rgba(29, 28, 28, 0.616);
 			color: #ffffff;
 			z-index: 1001;
 			transform: translateY(-100px);
@@ -621,7 +621,7 @@
                 </ol>
                 <div class="payment__note"><b>Внимание:</b> После проверки вашей квитанции вам будет предоставлен доступ по номеру вашего заказа.</div>
                 <div class="payment__buttons">
-                    <a href="index.html" class="payment__button" style="color: #ffffff;background: #673AB7;"><b>Оплачено</b></a>
+                    <a href="payments.html" class="payment__button" style="color: #ffffff;background: #673AB7;"><b>Оплачено</b></a>
                     <button class="payment__button payment__button_close"><b>Всё понятно, закрыть</b></button>
                 </div>
             </div>
